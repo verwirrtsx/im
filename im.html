@@ -1,0 +1,19 @@
+<html>
+<meta charset="utf-8">
+<head></head>
+<body>
+
+</body>
+</html>
+<script>
+ws = new WebSocket("ws://127.0.0.1:2344");
+ws.onopen = function() {
+console.log("连接成功");
+    
+    ws.send('tom');
+    console.log("给服务端发送一个字符串：tom");
+};
+ws.onmessage = function(e) {
+    console.log("收到服务端的消息：" + e.data);
+};
+</script>

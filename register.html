@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<title>注册</title>
+		<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui-v2.5.4/css/layui.css"/>
+		<script type="text/javascript" src="https://www.layuicdn.com/layui-v2.5.4/layui.js"></script>
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<input type="text" name="unum" id="unum" value="" placeholder="请填写你喜欢的号码/唯一"/>
+			<input type="password" name="password" id="password" placeholder="密码" />
+			<input type="password" name="apassword" id="apassword" placeholder="再次输入密码" />
+			<button onclick="send()">登入</button>
+		</div>
+	</body>
+</html>
+<script>
+	function send(){
+	var unum =document.getElementById("unum").value
+	,password =document.getElementById("password").value
+	,apassword =document.getElementById("apassword").value;
+	if(unum=="" || password==""){
+		alert("全部填写");
+	}
+	if(apassword !== password){
+		alert("两次输入不一样");
+	}
+	$.ajax({
+		type:"get",
+		url:"",
+		success:function(res){
+			
+		},
+		error:function(res){
+			
+		},
+		async:true
+	});
+	
+	}
+
+	
+</script>
