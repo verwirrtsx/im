@@ -1,10 +1,162 @@
 body{
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	height: 100%;
+padding:0;
+margin：0;
 }
 html{
+width:100%;
+height:100%;
+}
+.head{
+position:fixed;
+width:100%;
+height:50px;
+z-index:99;
+background-color:pink;
+}
+.title{
+line-height:50px;
+height:50px;
+padding-left:20px;
+}
+.main{
+width:100%;
+padding-top:50px;
+padding-bottom:50px;
+height:100%;
+padding-top:50px;
+overflow-y:auto;
+background-color:withe;
+}
+.down{
+width:100%;
+position:fixed;
+top:calc(100% - 42px);
+height:42px;
+z-index:999;
+background-color:pink;
+}
+.input{
+width:70%;
+height:34px;
+margin-left:5%;
+border:1px solid pink;
+border-radius:12px;
+padding-left:10px;
+display:inline-block;
+}
+.fasong{
+width:15%;
+height:34px;
+margin-left:5%;
+background-color:white;
+border:1px solid pink;
+border-radius:12px;
+display:inline-block;
+text-align:center;
+}
+.mes{
+    padding: 10px 8px;
+    background-color: pink;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-top: 10px;
+	margin-bottom: 10px;
+  float :left;
+   max-width:calc(100% - 40px);
+   word-break: break-all;
+   word-wrap: break-word;
+}
+.mes3{
+    padding: 10px 8px;
+    background-color: pink;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-top: 10px;
+	margin-bottom: 10px;
+  float :right;
+   max-width:calc(100% - 40px);
+   word-break: break-all;
+   word-wrap: break-word;
+}
+.mes2{
+    padding: 10px 10px;
+    background-color: yellow;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+	margin-bottom: 10px;
+  float :left;
+   max-width:calc(100% - 40px);
+   word-break: break-all;
+   word-wrap: break-word;
+}
+.mes4{
+    padding: 10px 10px;
+    background-color: yellow;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+	margin-bottom: 10px;
+  float :right;
+   max-width:calc(100% - 40px);
+   word-break: break-all;
+   word-wrap: break-word;
+}
+.mes1{
+	width:120px;
+	text-align:center;
+	margin-top:10px;
+	padding: 5px 5px;
+	margin-left:calc(50% - 60px);
+    background-color: #dddddd;
+    border-radius: 8px;
+	position:absolute;
+
+}
+.jg{
+	width:100%;
+	height:40px;
+	margin-top:10px;
+	padding-top:10px;
+}
+.title img{
+	width: 30px;
+	border-radius: 15px;
+	margin-top: 10px;
+}
+#name{
+	position: absolute;
+	left: 60px;
+}
+.didi{
+	width: 33%;
+	display: inline-block;
+	text-align: center;
+	padding-top: 5px;
+}
+.list{
+	width: 33%;
+	display: inline-block;
+	margin-left: -5px;
+	text-align: center;
+}
+.set{
+	width: 33%;
+	display: inline-block;
+	text-align: center;
+}
+#fri{
 width: 100%;
-height: 100%;
+height: 60px;
+margin-top: 10px;
+}
+#fri img{
+	width: 50px;
+	height: 50px;
+	margin-top: 5px;
+	margin-left: 15px;
+	border-radius: 8px;
+}
+#lname{
+	margin-left: 10px;
 }

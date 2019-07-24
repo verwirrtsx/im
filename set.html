@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/a.css"/>
+</head>
+<style>
+body{
+padding:0;
+margin：0;
+width:100%;
+height:100%;
+}
+html{
+width:100%;
+height:100%;
+}
+	.face{
+		width: 100%;
+		height: 80px;
+		padding-top: 60px;
+		
+	}
+	#tx{
+		margin-left: 18px;
+		font-size: 16px;
+		line-height: 80px;
+	}
+	#img{
+		width: 70px;
+		height: 70px;
+		float: right;
+		margin-top: 5px;
+		margin-right: 15px;
+		border-radius: 35px;
+	}
+.head{
+position:fixed;
+width:100%;
+height:50px;
+z-index:99;
+background-color:pink;
+}
+#name{
+	line-height: 50px;
+	margin-left: -40px;
+}
+#tx1{
+		font-size: 16px;
+		line-height: 60px;
+		margin-left: 18px;
+	}
+#name1{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+#tx2{
+		float: right;
+		margin-right: 20px;
+		line-height: 60px;
+}
+.send{
+	width: 60%;
+	height: 40px;
+	margin-left: 20%;
+	margin-top: 18px;
+}
+.down{
+width:100%;
+position:fixed;
+top:calc(100% - 42px);
+height:42px;
+z-index:999;
+background-color:pink;
+}
+</style>
+<body>
+<div class="head">
+<span id="name">个人信息</span>
+</div>
+</div>
+
+	<div class="face">
+		<span id="tx">
+			头像
+		</span>
+		<img src="img/timg.jpg" id="img"/>
+	</div>
+	<!--<hr style="width: 90%;margin-left: 5%;margin-top: 10px;" >-->
+	<div id="name1">
+		<span id="tx1">
+			昵称
+		</span>
+		<div id="tx2">
+			快乐风男
+		</div>
+	</div>
+	<!--<hr style="width: 90%;margin-left: 5%;margin-top: 10px;" >-->
+		
+		<button class="send">提交</button>
+		
+		
+<div class="down">
+<div class="didi" onclick="index()">
+<i class="layui-icon layui-icon-reply-fill" style="font-size: 30px; color: white;"></i>  
+</div>
+<div class="list" onclick="list()">
+<i class="layui-icon layui-icon-friends" style="font-size: 30px; color: white;"></i>  
+</div>
+<div class="set" onclick="set()">
+	<i class="layui-icon layui-icon-set-fill" style="font-size: 30px; color: yellow;"></i>  
+</div>
+</div>
+
+
+</body>
+</html>
+<script>
+	function index(){
+	location.href="index.html";
+}
+function list(){
+	location.href="list.html";
+}
+function set(){
+	location.href="set.html";
+}
+</script>
