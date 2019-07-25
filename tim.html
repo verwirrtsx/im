@@ -1,136 +1,21 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta charset="utf-8" content=""/>
 <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+<link rel="stylesheet" type="text/css" href="css/a.css"/>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
+
 </head>
 <style>
-body{
-padding:0;
-margin：0;
-}
-html{
-width:100%;
-height:100%;
-}
-.head{
-position:fixed;
-width:100%;
-height:50px;
-z-index:99;
-background-color:pink;
-}
-.title{
-line-height:50px;
-height:50px;
-padding-left:20px;
-}
-.main{
-width:100%;
-padding-top:50px;
-padding-bottom:50px;
-height:100%;
-padding-top:50px;
-overflow-y:auto;
-background-color:withe;
-}
-.down{
-width:100%;
-position:fixed;
-top:calc(100% - 42px);
-height:42px;
-z-index:999;
-background-color:pink;
-}
-.input{
-width:70%;
-height:34px;
-margin-left:5%;
-border:1px solid pink;
-border-radius:12px;
-padding-left:10px;
-display:inline-block;
-}
-.fasong{
-width:15%;
-height:34px;
-margin-left:5%;
-background-color:white;
-border:1px solid pink;
-border-radius:12px;
-display:inline-block;
-text-align:center;
-}
-.mes{
-    padding: 10px 8px;
-    background-color: pink;
-    border-radius: 8px;
-    margin-left: 10px;
-    margin-top: 10px;
-	margin-bottom: 10px;
-  float :left;
-   max-width:calc(100% - 40px);
-   word-break: break-all;
-   word-wrap: break-word;
-}
-.mes3{
-    padding: 10px 8px;
-    background-color: pink;
-    border-radius: 8px;
-    margin-left: 10px;
-    margin-top: 10px;
-	margin-bottom: 10px;
-  float :right;
-   max-width:calc(100% - 40px);
-   word-break: break-all;
-   word-wrap: break-word;
-}
-.mes2{
-    padding: 10px 10px;
-    background-color: yellow;
-    border-radius: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-	margin-bottom: 10px;
-  float :left;
-   max-width:calc(100% - 40px);
-   word-break: break-all;
-   word-wrap: break-word;
-}
-.mes4{
-    padding: 10px 10px;
-    background-color: yellow;
-    border-radius: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-	margin-bottom: 10px;
-  float :right;
-   max-width:calc(100% - 40px);
-   word-break: break-all;
-   word-wrap: break-word;
-}
-.mes1{
-	width:120px;
-	text-align:center;
-	margin-top:10px;
-	padding: 5px 5px;
-	margin-left:calc(50% - 60px);
-    background-color: #dddddd;
-    border-radius: 8px;
-	position:absolute;
 
-}
-.jg{
-	width:100%;
-	height:40px;
-	margin-top:10px;
-	padding-top:10px;
-}
 </style>
 <body>
 <div class="head">
-<div class="title">Hello.Kugou</div>
+<div class="title"><img src="img/timg.jpg"/>
+<span id="name">快乐风男</span>
+</div>
 </div>
 
 <div class="main" id="mes">
@@ -158,7 +43,7 @@ text-align:center;
 })
     function connect() {
        // 创建websocket
-      ws = new WebSocket("ws://182.61.44.35:2344");
+      ws = new WebSocket("ws://ws://127.0.0.1:2344");
        // 当socket连接打开时，输入用户名
        ws.onopen = onopen;
        // 当有消息时根据消息类型显示不同信息

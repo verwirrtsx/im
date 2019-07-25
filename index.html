@@ -6,18 +6,19 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/a.css"/>
+<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <style>
 </style>
 <body>
 <div class="head">
-<div class="title"><img src="img/timg.jpg"/>
+<div class="title"><img src="img/timg.jpg" id="face"/>
 <span id="name">快乐风男</span>
 </div>
 </div>
 
 <div class="main" id="mes">
-	<div id="fri">
+	<div id="fri" onclick="chat()">
 		<img src="img/timg.jpg"/>
 		<span id="lname">快乐风男</span>
 	</div>
@@ -48,6 +49,21 @@
 </body>
 </html>
 <script>
+	 var num =getCookie("num");	
+   $.ajax({
+   	type:"get",
+   	data:{
+   		num:num
+   	},
+   	url:"http://localhost/workman/public/index.php/index/index/getmes",
+   	success:function(res){
+		console.log(res.mes['face']);
+		$('#face').attr('src', res.mes['face']);
+		$('#name').text(res.mes['num']);
+   	},
+   	async:true
+   });
+	
  $(function(){  
       $('#aa').bind('keypress',function(event){  
          if(event.keyCode == "13"){
@@ -62,7 +78,7 @@
 })
     function connect() {
        // 创建websocket
-      ws = new WebSocket("ws://182.61.44.35:2344");
+      ws = new WebSocket("ws://127.0.0.1:2344");
        // 当socket连接打开时，输入用户名
        ws.onopen = onopen;
        // 当有消息时根据消息类型显示不同信息
@@ -76,30 +92,53 @@
        };
     }
 
-    function show_prompt(){  
-        name = prompt('输入你的名字：', '');
-        if(!name || name=='null'){  
-            name = '游客';
-        }
-    }  
+//  function show_prompt(){  
+//      name = prompt('输入你的名字：', '');
+//      if(!name || name=='null'){  
+//          name = '游客';
+//      }
+//  }  
 
         function onopen()
     {
-        if(!name)
-        {
-            show_prompt();
-        }
+//      if(!name)
+//      {
+//          show_prompt();
+//      }
         // 登录
-        var login_data = '{"type":"login","client_name":"'+name.replace(/"/g, '\\"')+'"}';
-        console.log("websocket握手成功，发送登录数据:"+login_data);
-        ws.send(login_data);
+        //var login_data = '{"type":"login","client_name":"'+name.replace(/"/g, '\\"')+'"}';
+        console.log("websocket握手成功，发送登录数据:");
+        //ws.send(login_data);
     }
 
     function onmessage(e)
     {
+
        console.log(e.data);
 	   let xx =e.data;
-	   var obj = eval('(' + xx + ')');
+	    var obj = eval('(' + xx + ')');
+	    
+	    
+	    
+		if(obj.type == "getid"){
+    		let unum = getCookie("num");
+    		$.ajax({
+    			type:"get",
+    			url:"http://localhost/workman/public/index.php/index/index/changeredis",
+    			data:{
+    				num:unum,
+    				uid:obj.id
+    			},
+    			success:function(res){
+    				console.log(res);
+    			},
+    			async:true
+    		});
+    		
+    		
+    	}
+	   
+	  
 	   if(obj.type=="mes"){
 	   if(obj.client_name == name){
 	   document.getElementById('mes').innerHTML+='<div class="mes4">'+obj.client_name+'</div><div class="mes3">'+obj.mes+'</div><div class="jg"></div>';
@@ -151,6 +190,9 @@ function list(){
 }
 function set(){
 	location.href="set.html";
+}
+function chat(){
+	location.href="tim.html";
 }
 // function mes(){
 //       var mess =document.getElementById('aa').value;

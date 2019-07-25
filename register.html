@@ -34,10 +34,26 @@
 		alert("两次输入不一样");
 	}
 	$.ajax({
-		type:"get",
-		url:"",
+		type:"post",
+		url:"http://localhost/workman/public/index.php/index/index/register",
+		data:{
+			num:unum,
+			password:password,
+			apassword:apassword
+		},
 		success:function(res){
-			
+		console.log(res);
+		if(res.code =="200"){
+				
+layui.use('layer', function(){
+  var layer = layui.layer;
+
+layer.alert('注册成功', function(index){
+  //do something
+  location.href="login.html";
+});
+});
+		}
 		},
 		error:function(res){
 			

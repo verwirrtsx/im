@@ -6,12 +6,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/a.css"/>
+<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <style>
 </style>
 <body>
 <div class="head">
-<div class="title"><img src="img/timg.jpg"/>
+<div class="title"><img src="img/timg.jpg" id="face"/>
 <span id="name">快乐风男</span>
 </div>
 </div>
@@ -48,6 +49,22 @@
 </body>
 </html>
 <script>
+		 var num =getCookie("num");	
+   $.ajax({
+   	type:"get",
+   	data:{
+   		num:num
+   	},
+   	url:"http://localhost/workman/public/index.php/index/index/getmes",
+   	success:function(res){
+		console.log(res.mes['face']);
+		$('#face').attr('src', res.mes['face']);
+		$('#name').text(res.mes['num']);
+   	},
+   	async:true
+   });
+	
+	
  $(function(){  
       $('#aa').bind('keypress',function(event){  
          if(event.keyCode == "13"){
