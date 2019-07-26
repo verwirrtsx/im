@@ -84,7 +84,7 @@ class Index
 
     }
 
-
+//    个人信息
     public  function  getmes($num){
         header('Access-Control-Allow-Origin:*');
     $res = db::table("user")->where("num",$num)->find();
@@ -94,6 +94,20 @@ class Index
         return json(['code'=>1,'mes'=>"error"]);
     }
 
+    }
+
+//    好友关系
+
+    public  function  getfir($num){
+        header('Access-Control-Allow-Origin:*');
+    $res =db::table("fir")->where("a",$num)->field('b')->select();
+    $arr=[];
+//    var_dump($res);
+        foreach ($res as $key =>$a){
+        $res1 = db::table("user")->where("num",$a['b'])->find();
+        array_push($arr,$res1);
+        }
+   return json(['code'=>0,'mes'=>$arr]);
     }
 
 

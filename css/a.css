@@ -22,7 +22,6 @@ padding-left:20px;
 width:100%;
 padding-top:50px;
 padding-bottom:50px;
-height:100%;
 padding-top:50px;
 overflow-y:auto;
 background-color:withe;
@@ -160,4 +159,68 @@ margin-top: 10px;
 }
 #lname{
 	margin-left: 10px;
+}
+
+
+.face{
+		width: 100%;
+		height: 80px;
+		padding-top: 60px;
+		
+	}
+	#tx{
+		margin-left: 18px;
+		font-size: 16px;
+		line-height: 80px;
+	}
+	#img{
+		width: 70px;
+		height: 70px;
+		float: right;
+		margin-top: 5px;
+		margin-right: 15px;
+		border-radius: 35px;
+	}
+
+
+#tx1{
+		font-size: 16px;
+		line-height: 60px;
+		margin-left: 18px;
+	}
+#name1{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+#tx2{
+		float: right;
+		margin-right: 20px;
+		line-height: 60px;
+}
+.send{
+	width: 60%;
+	height: 40px;
+	margin-left: 20%;
+	margin-top: 18px;
+}
+.noshow{
+	display: none;
+}
+.noshow2{
+	display: none;
+}
+.noshow3{
+	display: none;
+}
+.cw{
+	color: white;
+	font-size: 30px;
+}
+.cy{
+	color: yellow;
+	font-size: 30px;
+}
+.cc{
+	
 }
