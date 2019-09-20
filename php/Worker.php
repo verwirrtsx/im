@@ -1,6 +1,6 @@
 <?php
 
-namespace app\push\controller;
+namespace app\index\controller;
 
 use think\worker\Server;
 
@@ -37,7 +37,7 @@ class Worker extends Server
     } */
         $redis = new \Redis();
         $redis->connect('127.0.0.1', 6379);
-        //$redis->auth('');
+        $redis->auth('123456');
 
     $connection->send(json_encode(['type'=>"getid","id"=>$connection->id]));
 	var_dump($connection->id);

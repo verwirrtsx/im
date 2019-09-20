@@ -3,17 +3,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 <meta charset="utf-8" content=""/>
 <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
-<link rel="stylesheet" type="text/css" href="css/a.css"/>
+<link rel="stylesheet" type="text/css" href="./css/a.css"/>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 
 </head>
 <style>
-
+#img11{
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+}
 </style>
 <body>
 <div class="head">
-<div class="title"><img src="img/timg.jpg"/>
+<div class="title"><img src="img/timg.jpg" id="face"/>
 <span id="name">快乐风男</span>
 </div>
 </div>
@@ -28,7 +32,31 @@
 
 </body>
 </html>
-<!--<script>
+<script>
+	let id=	getQueryString('id');
+	console.log(id);
+	var img;
+	   $.ajax({
+   	type:"get",
+   	data:{
+   		num:id
+   	},
+   	url:"http://w.cn/getmes",
+   	success:function(res){
+		//console.log(res.mes['face']);
+		$('#face').attr('src', res.mes['face']);
+		$('#name').text(res.mes['num']);
+		
+		img = res.mes['face'];
+   	},
+   	async:true
+   });
+	
+	
+ let ws = window.parent.ws;
+  var  myimg = window.parent.myimg;
+   var  num = window.parent.num;
+ //console.log(myimg);
  $(function(){  
       $('#aa').bind('keypress',function(event){  
          if(event.keyCode == "13"){
@@ -36,54 +64,54 @@
          }  
      });  
   });  
+ws.onmessage = onmessage; 
 
+//	$(document).ready(function(){
+//	 connect();
+//})
+//  function connect() {
+//     // 创建websocket
+//    ws = new WebSocket("ws://ws://127.0.0.1:2344");
+//     // 当socket连接打开时，输入用户名
+//     ws.onopen = onopen;
+//     // 当有消息时根据消息类型显示不同信息
+//     ws.onmessage = onmessage; 
+//     ws.onclose = function() {
+//  	  console.log("连接关闭，定时重连");
+//        connect();
+//     };
+//     ws.onerror = function() {
+//   	  console.log("出现错误");
+//     };
+//  }
 
-	$(document).ready(function(){
-	 connect();
-})
-    function connect() {
-       // 创建websocket
-      ws = new WebSocket("ws://ws://127.0.0.1:2344");
-       // 当socket连接打开时，输入用户名
-       ws.onopen = onopen;
-       // 当有消息时根据消息类型显示不同信息
-       ws.onmessage = onmessage; 
-       ws.onclose = function() {
-    	  console.log("连接关闭，定时重连");
-          connect();
-       };
-       ws.onerror = function() {
-     	  console.log("出现错误");
-       };
-    }
+//  function show_prompt(){  
+//      name = prompt('输入你的名字：', '');
+//      if(!name || name=='null'){  
+//          name = '游客';
+//      }
+//  }  
+//
+//      function onopen()
+//  {
+//      if(!name)
+//      {
+//          show_prompt();
+//      }
+//      // 登录
+//      var login_data = '{"type":"login","client_name":"'+name.replace(/"/g, '\\"')+'"}';
+//      console.log("websocket握手成功，发送登录数据:"+login_data);
+//      ws.send(login_data);
+//  }
 
-    function show_prompt(){  
-        name = prompt('输入你的名字：', '');
-        if(!name || name=='null'){  
-            name = '游客';
-        }
-    }  
-
-        function onopen()
-    {
-        if(!name)
-        {
-            show_prompt();
-        }
-        // 登录
-        var login_data = '{"type":"login","client_name":"'+name.replace(/"/g, '\\"')+'"}';
-        console.log("websocket握手成功，发送登录数据:"+login_data);
-        ws.send(login_data);
-    }
-
-    function onmessage(e)
+   function onmessage(e)
     {
        console.log(e.data);
 	   let xx =e.data;
 	   var obj = eval('(' + xx + ')');
 	   if(obj.type=="mes"){
-	   if(obj.client_name == name){
-	   document.getElementById('mes').innerHTML+='<div class="mes4">'+obj.client_name+'</div><div class="mes3">'+obj.mes+'</div><div class="jg"></div>';
+	   if(obj.client_num == num){
+	   document.getElementById('mes').innerHTML+='<div class="mes4"><img src="'+myimg+'" id="img11"></div><div class="mes3">'+obj.mes+'</div><div class="jg"></div>';
 	
 	//滚动
 
@@ -92,7 +120,7 @@
 	//滚动
 	
 	   }else{
-	   	document.getElementById('mes').innerHTML+='<div class="mes2">'+obj.client_name+'</div><div class="mes">'+obj.mes+'</div><div class="jg"></div>';
+	   	document.getElementById('mes').innerHTML+='<div class="mes2"><img src="'+img+'" id="img11"></div><div class="mes">'+obj.mes+'</div><div class="jg"></div>';
 		}
 	   }
 		 if(obj.type=="login"){
@@ -103,7 +131,7 @@
 
     function onSubmit() {
        var mess =document.getElementById('aa').value;
-	   let  aa = '{"type":"mes","client_name":"'+name+'","mes":"'+mess+'"}';
+	   let  aa = '{"type":"mes","client_num":"'+num+'","for_num":"'+id+'","mes":"'+mess+'"}';
 	   
       if(mess==""){
         alert("消息不能为空");
@@ -111,7 +139,7 @@
       }
 	  
    ws.send(aa);
-   // console.log("给服务端发送一个字符串");
+    console.log(aa);
      document.getElementById('aa').value="";
     }
 	
@@ -119,7 +147,17 @@
 	function scc(){
 	var div = document.getElementById('mes');
 	div.scrollTop = div.scrollHeight+100;
-	console.log(div.scrollHeight);
-	console.log(div.scrollHeight);
+	//console.log(div.scrollHeight);
+	//console.log(div.scrollHeight);
 	}
-</script>-->
+	
+	function getQueryString(name) {
+var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+var r = window.location.search.substr(1).match(reg);
+if (r != null) {
+return unescape(r[2]);
+}
+return null;
+}
+	
+</script>

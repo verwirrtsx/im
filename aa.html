@@ -5,10 +5,23 @@
 <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
-<link rel="stylesheet" type="text/css" href="css/a.css"/>
-<script src="js/cookie.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="./css/a.css"/>
+<script src="./js/cookie.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <style>
+body .demo-class .layui-layer-title{background:#c00; color:#fff; border: none;}
+body .demo-class .layui-layer-btn{border-top:1px solid #E9E7E7}
+body .demo-class .layui-layer-btn a{background:#333;}
+body .demo-class .layui-layer-btn .layui-layer-btn1{background:red;}
+body .demo-class .layui-layer-setwin .layui-layer-close2{
+	position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    background-position: -149px -31px;
+}
 </style>
 <body>
 <div class="head">
@@ -76,18 +89,20 @@
 </html>
 <script>
 	 var num =getCookie("num");	
+	 var myimg ;
    $.ajax({
    	type:"get",
    	data:{
    		num:num
    	},
-   	url:"http://localhost/workman/public/index.php/index/index/getmes",
+   	url:"http://w.cn/getmes",
    	success:function(res){
 //		console.log(res.mes['face']);
 		$('#face').attr('src', res.mes['face']);
 		$('#name').text(res.mes['num']);
 		$('#img').attr('src', res.mes['face']);
 		$('#tx2').text(res.mes['num']);
+		myimg =res.mes['face'];
    	},
    	async:true
    });
@@ -97,7 +112,7 @@
    	data:{
    		num:num
    	},
-   	url:"http://localhost/workman/public/index.php/index/index/getfir",
+   	url:"http://w.cn/getfir",
    	success:function(res){
    		let aa =res.mes;
 // 		console.log(aa);
@@ -126,7 +141,7 @@
 })
     function connect() {
        // 创建websocket
-      ws = new WebSocket("ws://127.0.0.1:2344");
+      ws = new WebSocket("ws://182.61.44.35:2344");
        // 当socket连接打开时，输入用户名
        ws.onopen = onopen;
        // 当有消息时根据消息类型显示不同信息
@@ -172,7 +187,7 @@
     		let unum = getCookie("num");
     		$.ajax({
     			type:"get",
-    			url:"http://localhost/workman/public/index.php/index/index/changeredis",
+    			url:"http://w.cn/changeredis",
     			data:{
     				num:unum,
     				uid:obj.id
@@ -270,24 +285,18 @@ function set(){
 function chat(id){
 	layui.use("layer", function(){
 		var layer= layui.layer;	
-		var f = 'f'+id;
-	
-	if(arr_f.indexOf(f)>=0){
-	layer.full(f);
-	}
-
-	arr_f.push(f);
-	f = layer.open({
+	layer.open({
   type: 2,
-  title: false,
-  closeBtn: 0, //不显示关闭按钮
+  skin: 'demo-class',
+  title: '',
+  closeBtn: 1, //不显示关闭按钮
   shade: false,
-   maxmin: true, 
+   maxmin: false, 
   area: ['100%', '100%'],
   offset: 'r', //右下角弹出
   //time: 2000, //2秒后自动关闭
   anim: 2,
-  content: 'tim.html', //iframe的url，no代表不显示滚动条
+  content: 'tim.html?id='+id, //iframe的url，no代表不显示滚动条
 //end: function(){ //此处用于演示
 //  layer.open({
 //    type: 2,
@@ -301,8 +310,9 @@ function chat(id){
 //}
 });
 	
-console.log(arr_f);
 	});
+	
+	
 }
 
 
@@ -314,7 +324,7 @@ layui.use(['upload','form'], function(){
 	var imgurl;
 	 var uploadInst = upload.render({
     elem: '#test1'
-    ,url: 'http://localhost/workman/public/index.php/index/index/upload'
+    ,url: 'http://w.cn/upload'
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
       obj.preview(function(index, file, result){
@@ -353,7 +363,7 @@ form.on('submit(*)', function(data){
    		num:num,
    		imgurl:imgurl
    	},
-   	url:"http://localhost/workman/public/index.php/index/index/changeface",
+   	url:"http://w.cn/changeface",
    	success:function(res){
    		console.log(res);
    		if(res.code == 0){
